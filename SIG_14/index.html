@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Helps the browser identify support for mobile applications -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Title on the browser tab -->
+    <title>WebGIS</title>
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!-- Style for the fullscreen map display -->
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML Block to display the map -->
+    <div id="map"></div>
+
+    <script>
+      // Initialize the map
+      var map = L.map("map").setView([-7.9, 110.45], 10); // lat, long, zoom
+
+      // Define basemap layers
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Larasati Oktarani &copy; &mdash; 23611073 Satistika Universitas Islam Indonesia",
+      });
+
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a>',
+      });
+
+      // Add a default basemap to the map
+      Esri_WorldImagery.addTo(map);
+
+      // Control Layer for switching basemaps
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri World Imagery": Esri_WorldImagery,
+      };
+
+      var overlayMaps = {}; // Empty object for now, can add overlays later
+
+      var layerControl = L.control.layers(baseMaps, overlayMaps, { collapsed: false });
+      layerControl.addTo(map);
+
+      // Custom marker
+      var customIcon1 = L.icon({
+        iconUrl: "https://www.freeiconspng.com/uploads/maps-icon-11.png",
+        iconSize: [40, 40],
+      });
+      var marker0 = L.marker([-7.6874832621204545, 110.41543590276083], { icon: customIcon1 });
+      marker0.addTo(map);
+
+      var markerApotek = L.marker([-7.723032085827543, 110.35793391214209]); // you can change the coordinate
+      markerApotek.bindPopup("Masjid Al-MAA'UUN");
+      markerApotek.addTo(map);
+      markerApotek.openPopup();
+      markerApotek.bindTooltip("79G5+G4M, Kb. Arung, Tridadi, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55511");
+
+      var markerApotek2 = L.marker([-7.721272942767151, 110.36268954031085]); // you can change the coordinate
+      markerApotek2.bindPopup("Masjid Al Ikhlas Denggung");
+      markerApotek2.addTo(map);
+      markerApotek2.openPopup();
+      markerApotek2.bindTooltip("79H7+642, Jl. Gito Gati Denggung - Wonorejo, Penggung, Tridadi, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55511");
+
+      var markerApotek3 = L.marker([-7.7061212578922325, 110.36000086531811]); // you can change the coordinate
+      markerApotek3.bindPopup("Masjid AT TAQWA Sawahan");
+      markerApotek3.addTo(map);
+      markerApotek3.openPopup();
+      markerApotek3.bindTooltip("79V6+237, Sawahan, Pandowoharjo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55512");
+
+      var markerApotek4 = L.marker([-7.712604741290297, 110.35550281410161]); // you can change the coordinate
+      markerApotek4.bindPopup("Masjid Agung Sleman dr. Wahidin Soedirohoesodo");
+      markerApotek4.addTo(map);
+      markerApotek4.openPopup();
+      markerApotek4.bindTooltip("79P4+65V, Jl. Parasamya, Beran Lor, Tridadi, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55511");
+
+      var markerApotek5 = L.marker([-7.717568590967332, 110.3687925111124]); // you can change the coordinate
+      markerApotek5.bindPopup("Masjid Suciati Saliman");
+      markerApotek5.addTo(map);
+      markerApotek5.openPopup();
+      markerApotek5.bindTooltip("Jl. Gito Gati, Grojogan, Pandowoharjo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55512");
+
+      var markerApotek6 = L.marker([-7.699637674910619, 110.34609779747825]); // you can change the coordinate
+      markerApotek6.bindPopup("Masjid Besar Sleman Kota");
+      markerApotek6.addTo(map);
+      markerApotek6.openPopup();
+      markerApotek6.bindTooltip("Jl. Letkol Subadri No.1, Padukuhan Kalakijo, Triharjo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55514");
+
+      var markerApotek7 = L.marker([-7.736613025064813, 110.35212927527841]); // you can change the coordinate
+      markerApotek7.bindPopup("Masjid Al Ilham Kronggahan");
+      markerApotek7.addTo(map);
+      markerApotek7.openPopup();
+      markerApotek7.bindTooltip("Jl. Kebon Agung No.184, Kranggahan I, Trihanggo, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55291");
+
+      var markerApotek8 = L.marker([-7.719392031492304, 110.38208220924473]); // you can change the coordinate
+      markerApotek8.bindPopup("Masjid Istiqomah Kamdanen");
+      markerApotek8.addTo(map);
+      markerApotek8.openPopup();
+      markerApotek8.bindTooltip("79HJ+9VV, Jl. Palagan Tentara Pelajar, kamdanen, Rejodani 2, Sariharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581");
+
+      var markerApotek9 = L.marker([-7.697510227768343, 110.33812397848682]); // you can change the coordinate
+      markerApotek9.bindPopup("Masjid Al Fitroh");
+      markerApotek9.addTo(map);
+      markerApotek9.openPopup();
+      markerApotek9.bindTooltip("882Q+59F, Ngangkrik, Triharjo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55514");
+
+      var markerApotek10 = L.marker([-7.710578663130688, 110.33301255664988]); // you can change the coordinate
+      markerApotek10.bindPopup("Masjid Uswatun Hasanah");
+      markerApotek10.addTo(map);
+      markerApotek10.openPopup();
+      markerApotek10.bindTooltip("78PJ+MX8, Sayidan, Sumberadi, Kec. Mlati, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55288");
+    </script>
+  </body>
+</html>
